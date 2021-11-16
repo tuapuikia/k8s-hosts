@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: k8s-hosts
+  namespace: kube-system
+  labels:
+    app: k8s-hosts
+spec:
+  selector:
+    matchLabels:
+      app: k8s-hosts
+  template:
+    metadata:
+      labels:
+        app: k8s-hosts
+    spec:
+      containers:
+      - name: k8s-hosts
+        image: tuapuikia/k8s-hosts:latest
+        command: ["/usr/local/sbin/manage-etc-hosts.sh"]
+        args: ["add", "1.1.1.1", "testing.com"]
+        imagePullPolicy: Always
+        securityContext:
+          privileged: true
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100Mi
+        volumeMounts:
+        - name: etchost
+          mountPath: /k8s/etc
+      volumes:
+      - name: etchost
+        hostPath:
+          path: /etc

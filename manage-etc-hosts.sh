@@ -18,10 +18,10 @@ function remove() {
     then
         echo "$HOSTS_LINE Found in your $ETC_HOSTS, Removing now...";
         sed -i "/$HOSTS_LINE/d" $ETC_HOSTS
-        exit 0
+        sleep infinity
     else
         echo "$HOSTS_LINE was not found in your $ETC_HOSTS";
-        exit 1
+        sleep infinity
     fi
 }
 

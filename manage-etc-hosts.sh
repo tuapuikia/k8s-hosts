@@ -18,8 +18,10 @@ function remove() {
     then
         echo "$HOSTS_LINE Found in your $ETC_HOSTS, Removing now...";
         sed -i "/$HOSTS_LINE/d" $ETC_HOSTS
+        exit 0
     else
         echo "$HOSTS_LINE was not found in your $ETC_HOSTS";
+        exit 1
     fi
 }
 
@@ -38,8 +40,10 @@ function add() {
             if [ -n "$(grep -P $HOSTNAME $ETC_HOSTS)" ]
                 then
                     echo "$line_content was added succesfully";
+                    sleep infinity
                 else
                     echo "Failed to Add $line_content, Try again!";
+                    exit 1
             fi
     fi
 }

@@ -53,7 +53,7 @@ function help() {
     To add new host 
     please use /usr/local/sbin/manage-etc-hosts.sh add 10.20.1.2 test.com
     To remove host
-    please use /usr/local/sbin/manage-etc-hosts.sh add 10.20.1.2 test.com
+    please use /usr/local/sbin/manage-etc-hosts.sh remove 10.20.1.2 test.com
     '
 }
 
